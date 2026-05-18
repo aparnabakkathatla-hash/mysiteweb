@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+
+# Virtual env
+demovenv/
+
+# VS Code
+.vscode/
