@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Campus Events</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar{
+            background-color: darkblue;
+            padding: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo{
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .menu a{
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 18px;
+        }
+
+        .menu a:hover{
+            color: yellow;
+        }
+
+        .hero{
+            background-image:url('https://images.unsplash.com/photo-1523580494863-6f3031224c94');
+            height:400px;
+            background-size:cover;
+            background-position:center;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            color:white;
+            text-shadow:2px 2px 5px black;
+        }
+
+        .hero h1{
+            font-size:55px;
+            margin:0;
+        }
+
+        .hero p{
+            font-size:24px;
+        }
+
+        .search-box{
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .search-box input{
+            width: 300px;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid gray;
+            font-size: 16px;
+        }
+
+        .search-box button{
+            padding: 12px 20px;
+            background-color: darkblue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-box button:hover{
+            background-color: black;
+        }
+
+        .category-buttons{
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .category-buttons a{
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        .events-container{
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .event{
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px gray;
+            transition: 0.3s;
+        }
+
+        .event:hover{
+            transform: scale(1.03);
+        }
+
+        .event img{
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .content{
+            padding: 20px;
+        }
+
+        .content h2 a{
+            text-decoration: none;
+            color: green;
+        }
+
+        .content h2 a:hover{
+            color: darkblue;
+        }
+
+        .register-btn{
+            background: darkblue;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .register-btn:hover{
+            background:black;
+        }
+
+        .no-event{
+            text-align: center;
+            color: red;
+            font-size: 30px;
+            grid-column: 1 / -1;
+        }
+
+        footer{
+            background-color: darkblue;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <div class="logo">
+            Campus Events
+        </div>
+
+        <div class="menu">
+            <a href="/">Home</a>
+            <a href="/admin/">Admin</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
+            <a href="/gallery/">Gallery</a>
+        </div>
+
+    </div>
+
+    <div class="hero">
+
+        <h1>
+            Campus Events Portal
+        </h1>
+
+        <p>
+            Discover Technical, Cultural & Sports Events
+        </p>
+
+    </div>
+
+    <div class="search-box">
+
+        <form method="GET">
+
+            <input type="text" name="q" placeholder="Search Events">
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="category-buttons">
+
+        <a href="/" style="background:darkblue;">
+            All
+        </a>
+
+        <a href="/?category=tech" style="background:green;">
+            Tech
+        </a>
+
+        <a href="/?category=sports" style="background:orange;">
+            Sports
+        </a>
+
+        <a href="/?category=cultural" style="background:purple;">
+            Cultural
+        </a>
+
+    </div>
+
+    <div class="events-container">
+
+        {% if events %}
+
+            {% for event in events %}
+
+            <div class="event">
+
+                <img src="{{ event.image.url }}">
+
+                <div class="content">
+
+                    <h2>
+                        <a href="/event/{{ event.id }}/">
+                            {{ event.title }}
+                        </a>
+                    </h2>
+
+                    <p><b>Date:</b> {{ event.date }}</p>
+
+                    <p><b>Category:</b> {{ event.category }}</p>
+
+                    <p><b>Capacity:</b> {{ event.capacity }}</p>
+
+                    <a href="/event/{{ event.id }}/" class="register-btn">
+                        Register Now
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="no-event">
+                No Event Found
+            </div>
+
+        {% endif %}
+
+    </div>
+
+    <footer>
+
+        <h2>Campus Events Portal</h2>
+
+        <p>
+            Discover technical, cultural and sports events happening in campus.
+        </p>
+
+        <p>
+            Email: campusevents@gmail.com
+        </p>
+
+        <p>
+            Phone: +91 9490608689
+        </p>
+
+        <p>
+            Location: Hyderabad, India
+        </p>
+
+        <p>
+            © 2026 Campus Events | All Rights Reserved
+        </p>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+<h1>CampusConnect Events</h1>
+
+{% for event in events %}
+
+<h2>{{ event.title }}</h2>
+
+<p>Date: {{ event.date }}</p>
+
+<p>Category: {{ event.category }}</p>
+
+<p>Capacity: {{ event.capacity }}</p>
+
+<hr>
+
+{% endfor %}

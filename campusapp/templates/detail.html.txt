@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Details</title>
+</head>
+
+<body>
+
+<h1>{{ event.title }}</h1>
+
+<p><b>Date:</b> {{ event.date }}</p>
+
+<p><b>Category:</b> {{ event.category }}</p>
+
+<p><b>Capacity:</b> {{ event.capacity }}</p>
+
+<a href="/">Back to Home</a>
+
+</body>
+</html>
